@@ -35,7 +35,7 @@ public class QuizServlet extends HttpServlet {
                 case "answer":
                     showNextQuestion(request, response);
                     break;
-                // thêm case khác nếu cần
+
             }
         } catch (Exception e) {
             e.printStackTrace();

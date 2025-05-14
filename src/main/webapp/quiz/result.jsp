@@ -99,7 +99,7 @@
                         </ul>
                     </div>
 
-                    <!-- Cột phải: Hình ảnh -->
+
                     <div>
                         <p><strong>Câu hỏi:</strong> ${q.content}</p>
                         <c:if test="${not empty q.q_image_url}">

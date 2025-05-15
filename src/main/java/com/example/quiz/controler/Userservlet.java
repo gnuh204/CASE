@@ -91,7 +91,6 @@ public class Userservlet extends HttpServlet {
         if (user != null) {
             request.getSession().setAttribute("user", user);
             response.sendRedirect(request.getContextPath() + "/Quizz");
-
         }else  {
             request.getSession().setAttribute("Loi", "Tên đăng nhập hoặc mật khẩu không đúng!");
             RequestDispatcher rd = request.getRequestDispatcher("quiz/login.jsp");
@@ -102,6 +101,11 @@ public class Userservlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String email = request.getParameter("email");
+        if (userDAO.check(username, email)) {
+            request.setAttribute("error", "Tên đăng nhập hoặc email đã tồn tại");
+            request.getRequestDispatcher("quiz/register.jsp").forward(request, response);
+            return;
+        }
         User newuser = new User(username, password, email);
         userDAO.insertUser(newuser);
         RequestDispatcher rd = request.getRequestDispatcher("quiz/login.jsp");

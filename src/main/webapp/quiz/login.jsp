@@ -20,6 +20,17 @@
     <div class="col-md-4">
       <div class="card p-4 shadow-sm">
         <h3 class="text-center mb-4">Đăng nhập</h3>
+        <%
+          String errorMessage = (String) session.getAttribute("Loi");
+          if (errorMessage != null) {
+        %>
+        <div class="alert alert-danger text-center">
+          <%= errorMessage %>
+        </div>
+        <%
+            session.removeAttribute("Loi"); /
+          }
+        %>
         <form  method="post">
           <div class="mb-3">
             <label for="username" class="form-label">Tên đăng nhập</label>

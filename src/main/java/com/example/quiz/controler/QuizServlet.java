@@ -109,7 +109,7 @@ public class QuizServlet extends HttpServlet {
         List<Questions> questions = (List<Questions>) session.getAttribute("questions");
         Integer currentIndex = (Integer) session.getAttribute("currentIndex");
 
-        // Lấy và khởi tạo userAnswers nếu cần
+
         Map<Integer, String> userAnswers = (Map<Integer, String>) session.getAttribute("userAnswers");
         if (userAnswers == null) {
             userAnswers = new HashMap<>();

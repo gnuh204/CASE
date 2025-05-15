@@ -19,6 +19,11 @@
     <div class="col-md-4">
       <div class="card p-4 shadow-sm">
         <h3 class="text-center mb-4">Đăng ký</h3>
+        <% if (request.getAttribute("error") != null) { %>
+        <div class="alert alert-danger text-center">
+          <%= request.getAttribute("error") %>
+        </div>
+        <% } %>
         <form  method="post">
           <div class="mb-3">
             <label for="username" class="form-label">Tên đăng nhập</label>

@@ -12,7 +12,7 @@ public class UserDAO  implements IUserDAO{
     private Connection connection;
     private static final String INSERT_USER = "insert into users (username, password,email) values (?, ?,?)";
     private static final String GET_USER = "select * from users where username = ? and password = ?";
-
+    private static final String CHECK_USER_ = "SELECT * FROM users WHERE username = ? OR email = ?";
 
     @Override
     public void insertUser(User user) throws SQLException {
@@ -53,6 +53,20 @@ public class UserDAO  implements IUserDAO{
             throw new RuntimeException(e);
         }
         return user;
+    }
+
+    public boolean check(String username, String email) {
+        try {
+            connection = DBConnection.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(CHECK_USER_);
+            preparedStatement.setString(1,username);
+            preparedStatement.setString(2,email);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            return resultSet.next();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
     }
 
 
